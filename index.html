@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Who Am I?</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-6" style="width: ; height: 250px;"> 
+                    <img src="" alt="" id="image" style="width: 70%;"> 
+            </div>
+            <div class="col-md-6 pt-5 mt-5">
+                <h1>Name : <span id="user-name" class="bolder"></span></h1>
+                <h3>Gender : <span id="gender"></span></h3>
+                <h3>Phone : <span id="phone"></span></h3>
+                <h3>Email : <span id="email"></span></h3>
+                <h3>Location : <span id="country"></span></h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        document.body.style.backgroundColor = "tomato";
+        document.body.style.padding = "100px";
+        document.getElementById("image").style.borderRadius= "30%"; 
+        
+
+        fetch("https://randomuser.me/api/")
+            .then(res => res.json())
+            .then(data => {
+                const user = data.results[0];
+
+                const image = user.picture.large;
+                document.getElementById("image").src = image;
+
+                const userName = user.name;
+                const fullName = `${userName.title} ${userName.first} ${userName.last}`;
+                document.getElementById("user-name").innerText = fullName;
+
+                const gender = user.gender;
+                document.getElementById("gender").innerText = gender;
+
+                const phone = user.phone;
+                document.getElementById("phone").innerText = phone;
+
+                const email = user.email;
+                document.getElementById("email").innerText = email;
+
+                const location = user.location.country;
+                document.getElementById("country").innerText = location;
+                 
+
+            })
+    </script>
+</body>
+
+</html>
